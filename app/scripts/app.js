@@ -14,23 +14,51 @@ angular
     'ngCookies',
     'ngMessages',
     'ngResource',
-    'ngRoute',
+    // 'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
+  .config(['$urlRouterProvider', '$stateProvider',
+  function($urlRouterProvider, $stateProvider) {
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('home', {
+        url: '/',
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'MainCtrl'
       })
-      .when('/about', {
+      .state('about', {
+        url: '/about',
         templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'AboutCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('browse', {
+        url: '/browse',
+        templateUrl: 'views/browse.html',
+        controller: 'BrowseCtrl'
       });
-  });
+  }]);
+
+// Using angular-route
+  // .config(function ($routeProvider) {
+  //   $routeProvider
+  //     .when('/', {
+  //       templateUrl: 'views/main.html',
+  //       controller: 'MainCtrl',
+  //       controllerAs: 'main'
+  //     })
+  //     .when('/about', {
+  //       templateUrl: 'views/about.html',
+  //       controller: 'AboutCtrl',
+  //       controllerAs: 'about'
+  //     })
+  //     .when('/browse', {
+  //       templateUrl: 'views/browse.html',
+  //       controller: 'BrowseCtrl',
+  //       controllerAs: 'browse'
+  //     })
+  //     .otherwise({
+  //       redirectTo: '/'
+  //     });
+  // });
