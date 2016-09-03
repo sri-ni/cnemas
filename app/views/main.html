@@ -1,20 +1,19 @@
-<div class="jumbotron">
-  <h1>Welcome to the Cinemas!</h1>
-  <p class="lead">
-    <!-- <img src="images/yeoman.png" alt="I'm Yeoman"><br> -->
-    Always a pleasure watching them.
-  </p>
-  <!-- <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p> -->
-</div>
-
-<div class="row marketing">
-  <h4>Popular</h4>
+<div class="row">
+  <div class="col-sm-12">
+  <h2>Popular</h2>
   <p>
-    The most popular movies.
+    The most popular movies right now!
   </p>
 
-  <h4>Recent</h4>
-  <p>
-    The most recent movies
-  </p>
+  <!-- <div class="row"> -->
+    <div class="col-sm-6 movie-tiles"
+      ng-repeat="movie in movies">
+      <img ng-src="http://image.tmdb.org/t/p/w500{{movie.backdrop_path}}"
+        alt="poster"
+        class="img-rounded">
+      <h4>{{movie.title}}</h4>
+      <!-- <p>{{movie.overview}}</p> -->
+    </div>
+  </div>
+
 </div>
