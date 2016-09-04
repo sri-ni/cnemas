@@ -15,12 +15,12 @@
     <nav aria-label="...">
       <ul class="pager">
         <li ng-if="previousPage" class="previous">
-          <a ui-sref="popularpage({ page: previousPage })">
+          <a ui-sref="movies({ page: previousPage })">
             <span aria-hidden="true">&larr;</span>
             Previous</a>
         </li>
         <li ng-if="nextPage" class="next">
-          <a ui-sref="popularpage({ page: nextPage })">
+          <a ui-sref="movies({ page: nextPage })">
             Next
             <span aria-hidden="true">&rarr;</span>
           </a>
@@ -30,7 +30,7 @@
 
     <div class="col-sm-6 movie-tiles"
       ng-repeat="movie in movies"
-      ui-sref="movie({ id: movie.id })">
+      ui-sref="moviedetails({ id: movie.id })">
       <img ng-src="{{movie.img_path}}"
         alt="poster"
         class="img-rounded">
@@ -41,12 +41,12 @@
     <nav aria-label="...">
       <ul class="pager">
         <li ng-if="previousPage" class="previous">
-          <a ui-sref="popularpage({ page: previousPage })">
+          <a ui-sref="movies({ page: previousPage })">
             <span aria-hidden="true">&larr;</span>
             Previous</a>
         </li>
         <li ng-if="nextPage" class="next">
-          <a ui-sref="popularpage({ page: nextPage })">
+          <a ui-sref="movies({ page: nextPage })">
             Next
             <span aria-hidden="true">&rarr;</span>
           </a>

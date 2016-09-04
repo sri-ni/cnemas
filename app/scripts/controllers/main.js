@@ -11,6 +11,8 @@ angular.module('cnemasApp')
   .controller('MainCtrl', ['$scope', 'moviesPopular', '$stateParams', '$location', '$state',
   function ($scope, moviesPopular, $stateParams, $location, $state) {
 
+    console.log($state);
+
     // get page number
     console.log('stateParams: ',$stateParams.page);
     var page = ($stateParams.page)? parseInt($stateParams.page): 1;
@@ -28,7 +30,7 @@ angular.module('cnemasApp')
             result.img_path="http://image.tmdb.org/t/p/w500"+result.backdrop_path;
           }
         });
-        console.log('results: ', data);
+        // console.log('results: ', data);
         var totalPages = data['total_pages'];
         $scope.movies = data.results;
         $scope.nextPage = (page+1 <= totalPages)? page+1: 0;
@@ -50,12 +52,12 @@ angular.module('cnemasApp')
        window.popularity = item;
       //  $scope.page = 1;
       //  $location.path("/");
-       console.log($location.path());
-       console.log($scope.selectedPopularity);
-       if ($location.path() === '/popular') {
+      //  console.log($location.path());
+      //  console.log($scope.selectedPopularity);
+       if ($location.path() === '/movies/1') {
          $state.reload();
        } else {
-          $location.path("/popular");
+          $location.path("/movies/1");
        }
       //  $scope.getMoviesNow($scope.selectedPopularity.key);
     };

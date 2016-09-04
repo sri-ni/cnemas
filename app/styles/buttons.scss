@@ -1,14 +1,12 @@
 @import "colors.scss";
 
-.close-back {
+a.close-back {
+  color: #777777;
   font-size: 25px;
   padding-bottom: 20px;
   text-align: right;
-  a {
-    color: #777777;
 
-    &:hover {
-      color: $primary-blue;
-    }
+  &:hover {
+    color: $primary-blue;
   }
 }

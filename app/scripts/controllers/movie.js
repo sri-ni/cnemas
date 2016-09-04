@@ -8,8 +8,16 @@
  * Controller of the cnemasApp
  */
 angular.module('cnemasApp')
-  .controller('MovieCtrl', ['$scope', '$stateParams', 'movieDetails',
-  function ($scope, $stateParams, movieDetails) {
+  .controller('MovieCtrl', ['$scope', '$stateParams', 'movieDetails', '$state', 'movieTitle',
+  function ($scope, $stateParams, movieDetails, $state, movieTitle) {
+
+    $scope.movieTitle = movieTitle;
+    $state.current.data.displayName = movieTitle;
+    $state.$current.data.displayName = movieTitle;
+    console.log($state);
+
+    console.log($stateParams.id);
+
     var promise = movieDetails.getMovieDetails($stateParams.id);
 
     promise.then(function(data){
@@ -20,6 +28,7 @@ angular.module('cnemasApp')
         data.imgPath="http://image.tmdb.org/t/p/w500"+data.poster_path;
       }
       $scope.movie = data;
+      // $scope.movie = data.title;
     });
 
   }]);
