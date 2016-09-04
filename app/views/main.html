@@ -1,9 +1,16 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>Popular</h1>
-    <p>
-      The most popular movies right now!
-    </p>
+    
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{selectedPopularity.name}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="pref in popularity"><a ng-click="dropdownPopularitySelected(pref)">{{pref.name}}</a></li>
+        </ul>
+    </div>
 
     <nav aria-label="...">
       <ul class="pager">
