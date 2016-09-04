@@ -21,12 +21,19 @@ angular
   ])
   .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/popular');
     $stateProvider
-      .state('home', {
-        url: '/',
+      .state('popular', {
+        url: '/popular',
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        cache: false
+      })
+      .state('popularpage', {
+        url: '/popular/:page',
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        cache: false
       })
       .state('about', {
         url: '/about',

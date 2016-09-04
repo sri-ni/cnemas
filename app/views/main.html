@@ -1,19 +1,50 @@
 <div class="row">
   <div class="col-sm-12">
-  <h2>Popular</h2>
-  <p>
-    The most popular movies right now!
-  </p>
+    <h1>Popular</h1>
+    <p>
+      The most popular movies right now!
+    </p>
 
-  <!-- <div class="row"> -->
+    <nav aria-label="...">
+      <ul class="pager">
+        <li ng-if="previousPage" class="previous">
+          <a ui-sref="popularpage({ page: previousPage })">
+            <span aria-hidden="true">&larr;</span>
+            Previous</a>
+        </li>
+        <li ng-if="nextPage" class="next">
+          <a ui-sref="popularpage({ page: nextPage })">
+            Next
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
     <div class="col-sm-6 movie-tiles"
       ng-repeat="movie in movies">
-      <img ng-src="http://image.tmdb.org/t/p/w500{{movie.backdrop_path}}"
+      <img ng-src="{{movie.img_path}}"
         alt="poster"
         class="img-rounded">
       <h4>{{movie.title}}</h4>
       <!-- <p>{{movie.overview}}</p> -->
     </div>
-  </div>
 
+    <nav aria-label="...">
+      <ul class="pager">
+        <li ng-if="previousPage" class="previous">
+          <a ui-sref="popularpage({ page: previousPage })">
+            <span aria-hidden="true">&larr;</span>
+            Previous</a>
+        </li>
+        <li ng-if="nextPage" class="next">
+          <a ui-sref="popularpage({ page: nextPage })">
+            Next
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </div>
