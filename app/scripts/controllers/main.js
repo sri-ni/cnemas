@@ -30,7 +30,7 @@ angular.module('cnemasApp')
         } else {
           result.img_path="http://image.tmdb.org/t/p/w500"+result.backdrop_path;
         }
-      })
+      });
       console.log('results: ', data);
       var totalPages = data['total_pages'];
       $scope.movies = data.results;
