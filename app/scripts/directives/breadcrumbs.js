@@ -39,8 +39,14 @@ angular.module('cnemasApp')
 
           currentUrl.forEach (function(urlBit){
             switch (urlBit) {
+              case '':
+                name = 'Home';
+                break;
               case 'movies':
                 name = 'Popular';
+                break;
+              case 'search':
+                name = 'Search';
                 break;
               case 'details':
                 name = currentName;

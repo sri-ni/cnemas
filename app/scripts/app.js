@@ -32,15 +32,6 @@ angular
           displayName : 'Popular'
         }
       })
-      // .state('movies.page', {
-      //   url: '/:page',
-      //   templateUrl: 'views/main.html',
-      //   controller: 'MainCtrl',
-      //   cache: false,
-      //   data : {
-      //     displayName : 'Popular.Page'
-      //   }
-      // })
       .state('moviedetails', {
         url: '/movies/details/:id',
         templateUrl: 'views/movie.html',
@@ -51,10 +42,43 @@ angular
         },
         resolve: {
           movieTitle: function($stateParams, movieDetails) {
-            return movieDetails.getMovieName($stateParams.id)
+            return movieDetails.getMovieName($stateParams.id);
+          }
+        }
+      })
+      .state('searchresults', {
+        url: '/search?q&page',
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        cache: false,
+        data : {
+          displayName : 'Search Results'
+        }
+      })
+      .state('searchresultsmoviedetails', {
+        url: '/search/details/:id',
+        templateUrl: 'views/movie.html',
+        controller: 'MovieCtrl',
+        cache: false,
+        data : {
+          displayName : '{{movieTitle}}'
+        },
+        resolve: {
+          movieTitle: function($stateParams, movieDetails) {
+            return movieDetails.getMovieName($stateParams.id);
           }
         }
       });
+      // .state('movies.page', {
+      //   url: '/:page',
+      //   templateUrl: 'views/main.html',
+      //   controller: 'MainCtrl',
+      //   cache: false,
+      //   data : {
+      //     displayName : 'Popular.Page'
+      //   }
+      // })
+
       // .state('browse', {
       //   url: '/browse',
       //   templateUrl: 'views/browse.html',
@@ -63,6 +87,11 @@ angular
   }]);
 
 // Using angular-route
+// .when('/searchResults', {
+//   templateUrl: 'views/searchresults.html',
+//   controller: 'SearchresultsCtrl',
+//   controllerAs: 'searchResults'
+// })
   // .config(function ($routeProvider) {
   //   $routeProvider
   //     .when('/', {
@@ -85,6 +114,7 @@ angular
   //   controller: 'MovieCtrl',
   //   controllerAs: 'movie'
   // })
+
   //     .otherwise({
   //       redirectTo: '/'
   //     });

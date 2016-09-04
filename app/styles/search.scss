@@ -1,0 +1,17 @@
+.search-results {
+  border-bottom: 1px solid #EFEFEF;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-bottom: 20px;
+
+  img {
+    margin-top: 25px;
+    max-width: 100px;
+    min-height: 150px;
+    min-width: 100px;
+  }
+
+  &:hover {
+    background-color: #DEDEDE;
+  }
+}
