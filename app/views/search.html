@@ -1,0 +1,53 @@
+<h1>Search Results</h1>
+<h3 class="text-primary">"{{searchTerm}}"</h3>
+<!-- <p>This is the searchResults view.</p> -->
+
+<nav aria-label="...">
+  <ul class="pager">
+    <li ng-if="previousPage" class="previous">
+      <a ui-sref="searchresults({ q: searchTerm, page: previousPage })">
+        <span aria-hidden="true">&larr;</span>
+        Previous</a>
+    </li>
+    <li ng-if="nextPage" class="next">
+      <a ui-sref="searchresults({  q: searchTerm, page: nextPage })">
+        Next
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="row search-results"
+  ng-repeat="movie in movies"
+  ui-sref="searchresultsmoviedetails({ id: movie.id })">
+  <div class="col-sm-3">
+    <img ng-src="{{movie.imgPath}}"
+      alt="poster"
+      class="img-rounded">
+  </div>
+  <div class="col-sm-9">
+    <h3>{{movie.title}}</h1>
+    <span class="badge">{{movie.releaseYear}}</span>
+    <p>
+      {{movie.overview | limitTo: 400}}
+      {{movie.overview.length > 400 ? '...' : ''}}
+    </p>
+  </div>
+</div>
+
+<nav aria-label="...">
+  <ul class="pager">
+    <li ng-if="previousPage" class="previous">
+      <a ui-sref="searchresults({ q: searchTerm, page: previousPage })">
+        <span aria-hidden="true">&larr;</span>
+        Previous</a>
+    </li>
+    <li ng-if="nextPage" class="next">
+      <a ui-sref="searchresults({  q: searchTerm, page: nextPage })">
+        Next
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

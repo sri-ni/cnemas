@@ -1,7 +1,10 @@
 <ol class="breadcrumb">
   <li ng-repeat="crumb in breadcrumbs"
       ng-class="{ active: $last }">
-      <a href onclick="history.back()" ng-if="!$last">
+      <a ui-sref="movies({ page: 1 })" ng-if="$first">
+        {{ crumb.displayName }}&nbsp;
+      </a>
+      <a href onclick="history.back()" ng-if="!$first && !$last">
         {{ crumb.displayName }}&nbsp;
       </a>
       <span ng-show="$last">{{ crumb.displayName }}</span>
