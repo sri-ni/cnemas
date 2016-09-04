@@ -21,30 +21,45 @@ angular
   ])
   .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/popular');
+    $urlRouterProvider.otherwise('/movies/1');
     $stateProvider
-      .state('popular', {
-        url: '/popular',
+      .state('movies', {
+        url: '/movies/:page',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        cache: false
+        cache: false,
+        data : {
+          displayName : 'Popular'
+        }
       })
-      .state('popularpage', {
-        url: '/popular/:page',
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        cache: false
-      })
-      .state('about', {
-        url: '/about',
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .state('browse', {
-        url: '/browse',
-        templateUrl: 'views/browse.html',
-        controller: 'BrowseCtrl'
+      // .state('movies.page', {
+      //   url: '/:page',
+      //   templateUrl: 'views/main.html',
+      //   controller: 'MainCtrl',
+      //   cache: false,
+      //   data : {
+      //     displayName : 'Popular.Page'
+      //   }
+      // })
+      .state('moviedetails', {
+        url: '/movies/details/:id',
+        templateUrl: 'views/movie.html',
+        controller: 'MovieCtrl',
+        cache: false,
+        data : {
+          displayName : '{{movieTitle}}'
+        },
+        resolve: {
+          movieTitle: function($stateParams, movieDetails) {
+            return movieDetails.getMovieName($stateParams.id)
+          }
+        }
       });
+      // .state('browse', {
+      //   url: '/browse',
+      //   templateUrl: 'views/browse.html',
+      //   controller: 'BrowseCtrl'
+      // });
   }]);
 
 // Using angular-route
@@ -65,6 +80,11 @@ angular
   //       controller: 'BrowseCtrl',
   //       controllerAs: 'browse'
   //     })
+  // .when('/movie', {
+  //   templateUrl: 'views/movie.html',
+  //   controller: 'MovieCtrl',
+  //   controllerAs: 'movie'
+  // })
   //     .otherwise({
   //       redirectTo: '/'
   //     });
