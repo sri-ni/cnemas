@@ -1,20 +1,57 @@
-<div class="jumbotron">
-  <h1>Welcome to the Cinemas!</h1>
-  <p class="lead">
-    <!-- <img src="images/yeoman.png" alt="I'm Yeoman"><br> -->
-    Always a pleasure watching them.
-  </p>
-  <!-- <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p> -->
-</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>Popular</h1>
+    
+    <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{selectedPopularity.name}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li ng-repeat="pref in popularity"><a ng-click="dropdownPopularitySelected(pref)">{{pref.name}}</a></li>
+        </ul>
+    </div>
 
-<div class="row marketing">
-  <h4>Popular</h4>
-  <p>
-    The most popular movies.
-  </p>
+    <nav aria-label="...">
+      <ul class="pager">
+        <li ng-if="previousPage" class="previous">
+          <a ui-sref="popularpage({ page: previousPage })">
+            <span aria-hidden="true">&larr;</span>
+            Previous</a>
+        </li>
+        <li ng-if="nextPage" class="next">
+          <a ui-sref="popularpage({ page: nextPage })">
+            Next
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-  <h4>Recent</h4>
-  <p>
-    The most recent movies
-  </p>
+    <div class="col-sm-6 movie-tiles"
+      ng-repeat="movie in movies">
+      <img ng-src="{{movie.img_path}}"
+        alt="poster"
+        class="img-rounded">
+      <h4>{{movie.title}}</h4>
+      <!-- <p>{{movie.overview}}</p> -->
+    </div>
+
+    <nav aria-label="...">
+      <ul class="pager">
+        <li ng-if="previousPage" class="previous">
+          <a ui-sref="popularpage({ page: previousPage })">
+            <span aria-hidden="true">&larr;</span>
+            Previous</a>
+        </li>
+        <li ng-if="nextPage" class="next">
+          <a ui-sref="popularpage({ page: nextPage })">
+            Next
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
 </div>
