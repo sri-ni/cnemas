@@ -35,6 +35,12 @@ angular
         controller: 'MainCtrl',
         cache: false
       })
+      .state('movie', {
+        url: '/movie/:id',
+        templateUrl: 'views/movie.html',
+        controller: 'MovieCtrl',
+        cache: false
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
@@ -65,6 +71,11 @@ angular
   //       controller: 'BrowseCtrl',
   //       controllerAs: 'browse'
   //     })
+  // .when('/movie', {
+  //   templateUrl: 'views/movie.html',
+  //   controller: 'MovieCtrl',
+  //   controllerAs: 'movie'
+  // })
   //     .otherwise({
   //       redirectTo: '/'
   //     });

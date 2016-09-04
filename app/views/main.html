@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <h1>Popular</h1>
-    
+
     <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             {{selectedPopularity.name}}
@@ -29,7 +29,8 @@
     </nav>
 
     <div class="col-sm-6 movie-tiles"
-      ng-repeat="movie in movies">
+      ng-repeat="movie in movies"
+      ui-sref="movie({ id: movie.id })">
       <img ng-src="{{movie.img_path}}"
         alt="poster"
         class="img-rounded">

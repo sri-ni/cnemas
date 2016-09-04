@@ -2,7 +2,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
+@import "buttons.scss";
 @import "colors.scss";
+@import "details.scss";
 @import "footer.scss";
 @import "nav.scss";
 @import "tiles.scss";
@@ -91,7 +93,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
