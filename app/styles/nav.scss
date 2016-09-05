@@ -13,10 +13,28 @@
   .search-global {
     border: 1px solid white;
     border-radius: 0px;
-    float: right;
     font-size: 14px;
     font-weight: 200;
     height: 50px;
-    width: 70%;
+    text-align: center;
+  }
+
+  .clear-search {
+    color: #B3B3B3;
+    background: #FEFEFE;
+    border-radius: 0px;
+    font-size: 1.2em;
+    height: 50px;
+    &:hover {
+      span {
+        transform: scale(1.3, 1.3);
+      }
+    }
+  }
+
+  .col-sm-1,
+  .col-sm-9 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
