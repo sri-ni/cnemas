@@ -15,7 +15,7 @@ angular.module('cnemasApp')
           if (searchTerm) {
             $location.path('/search').search({'q': searchTerm, 'page': 1});
           } else {
-            $location.path('/movies');
+            $location.path('/movies').search({'page': 1});
           }
         });
       }
