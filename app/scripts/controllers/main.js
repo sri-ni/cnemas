@@ -8,20 +8,83 @@
  * Controller of the cnemasApp
  */
 angular.module('cnemasApp')
-  .controller('MainCtrl', ['$scope', 'moviesPopular', '$stateParams', '$location', '$state',
-  function ($scope, moviesPopular, $stateParams, $location, $state) {
+  .controller('MainCtrl', ['$scope', 'moviesPopular', '$stateParams', '$location', '$state', 'moviesGenres',
+  function ($scope, moviesPopular, $stateParams, $location, $state, moviesGenres) {
 
-    console.log($state);
+    $scope.popularity = [{
+      'key': 'desc',
+      'name': 'Most Popular'
+    }, {
+      'key': 'asc',
+      'name': 'Least Popular'
+    }];
+    $scope.moviesGenresOptions = moviesGenres;
+    $scope.selectedMoviesGenres = [];
 
-    // get page number
-    console.log('stateParams: ',$stateParams.page);
-    var page = ($stateParams.page)? parseInt($stateParams.page): 1;
-    $scope.page = page;
+    var page = ($stateParams.page)? parseInt($stateParams.page): 1,
+      popularity = ($stateParams.popularity)? $stateParams.popularity: $scope.popularity[0]['key'],
+      genres = ($stateParams.genres)? $stateParams.genres: '',
+      genreIds = [],
+      genreObj = null;
 
-    $scope.getMoviesNow = function(popularity){
-      page = $scope.page;
-      var promise = moviesPopular.getPopularMovies(page, popularity);
+    // Template filter values
+    // popularity
+    if (popularity) {
+      $scope.selectedPopularity = $scope.popularity.find(function(popItem){
+        return popItem.key === popularity;
+      });
+    } else {
+      $scope.selectedPopularity = $scope.popularity[0];
+    }
+    // genres
+    if (genres) {
+      $scope.selectedGenres = genres;
+      genreIds = genres.split(',');
+      genreIds.forEach(function(key){
+        genreObj = $scope.moviesGenresOptions.find(function(genreItem){
+          return genreItem.id === parseInt(key);
+        });
+        if (genreObj) {
+          $scope.selectedMoviesGenres.push(genreObj);
+        }
+      });
+    } else {
+      $scope.selectedGenres = '';
+      $scope.selectedMoviesGenres = [];
+    }
+    var selectedMoviesGenresMirror = $scope.selectedMoviesGenres;
 
+    $scope.dropdownPopularitySelected = function (item) {
+     if (item.key !== popularity) {
+       $location.path('/movies')
+        .search({
+          'page': 1,
+          'popularity': item.key,
+          'genres': genres
+        });
+      }
+      // $state.reload();
+    };
+
+    $scope.filterMoviesGenres = function() {
+      if (selectedMoviesGenresMirror.length === $scope.selectedMoviesGenres.length) {
+        return;
+      }
+      genreIds = $scope.selectedMoviesGenres.map(function(genreObj){
+        return genreObj.id;
+      });
+      genreIds = genreIds.join(',');
+      console.log('get new movies filtered by genre:', genreIds);
+      $location.path('/movies')
+       .search({
+         'page': 1,
+         'popularity': popularity,
+         'genres': genreIds
+       });
+    };
+
+    $scope.getMoviesNow = function(popularity, page, genreIds){
+      var promise = moviesPopular.getPopularMovies(page, popularity, genreIds);
       promise.then(function(data){
         data.results.forEach(function(result) {
           if (!result.backdrop_path) {
@@ -30,7 +93,6 @@ angular.module('cnemasApp')
             result.img_path="http://image.tmdb.org/t/p/w500"+result.backdrop_path;
           }
         });
-        // console.log('results: ', data);
         var totalPages = data['total_pages'];
         $scope.movies = data.results;
         $scope.nextPage = (page+1 <= totalPages)? page+1: 0;
@@ -38,30 +100,7 @@ angular.module('cnemasApp')
       });
     };
 
-    // popularity sort
-    $scope.popularity = [{
-      'key': 'desc',
-      'name': 'Most'
-    }, {
-      'key': 'asc',
-      'name': 'Least'
-    }];
-    $scope.selectedPopularity = window.popularity || $scope.popularity[0];
-    $scope.dropdownPopularitySelected = function (item) {
-       $scope.selectedPopularity = item;
-       window.popularity = item;
-      //  $scope.page = 1;
-      //  $location.path("/");
-      //  console.log($location.path());
-      //  console.log($scope.selectedPopularity);
-       if ($location.path() === '/movies/1') {
-         $state.reload();
-       } else {
-          $location.path("/movies/1");
-       }
-      //  $scope.getMoviesNow($scope.selectedPopularity.key);
-    };
+    // Get fresh data
+    $scope.getMoviesNow(popularity, page, genres);
 
-
-    $scope.getMoviesNow($scope.selectedPopularity.key);
   }]);

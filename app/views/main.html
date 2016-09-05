@@ -2,25 +2,52 @@
   <div class="col-sm-12">
     <h1>Popular</h1>
 
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             {{selectedPopularity.name}}
             <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li ng-repeat="pref in popularity"><a ng-click="dropdownPopularitySelected(pref)">{{pref.name}}</a></li>
-        </ul>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-sm-5">
+        <multiselect
+          ng-model="selectedMoviesGenres"
+          ng-model-options="{ debounce: 700 }"
+          ng-change="filterMoviesGenres()"
+          options="moviesGenresOptions"
+          default-text="Filter by Genres"
+          id-prop="id"
+          display-prop="name">
+        </multiselect>
+      </div>
+
+      <div class="col-sm-4">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="row genres">
+      <span class="badge badge-light"
+        ng-repeat="genre in selectedMoviesGenres">
+        {{genre.name}}
+      </span>
     </div>
 
     <nav aria-label="...">
       <ul class="pager">
         <li ng-if="previousPage" class="previous">
-          <a ui-sref="movies({ page: previousPage })">
+          <a ui-sref="movies({ page: previousPage, popularity: selectedPopularity.key, genres: selectedGenres })">
             <span aria-hidden="true">&larr;</span>
             Previous</a>
         </li>
         <li ng-if="nextPage" class="next">
-          <a ui-sref="movies({ page: nextPage })">
+          <a ui-sref="movies({ page: nextPage, popularity: selectedPopularity.key, genres: selectedGenres })">
             Next
             <span aria-hidden="true">&rarr;</span>
           </a>
@@ -41,18 +68,19 @@
     <nav aria-label="...">
       <ul class="pager">
         <li ng-if="previousPage" class="previous">
-          <a ui-sref="movies({ page: previousPage })">
+          <a ui-sref="movies({ page: previousPage, popularity: selectedPopularity.key, genres: selectedGenres })">
             <span aria-hidden="true">&larr;</span>
             Previous</a>
         </li>
         <li ng-if="nextPage" class="next">
-          <a ui-sref="movies({ page: nextPage })">
+          <a ui-sref="movies({ page: nextPage, popularity: selectedPopularity.key, genres: selectedGenres })">
             Next
             <span aria-hidden="true">&rarr;</span>
           </a>
         </li>
       </ul>
     </nav>
+
 
   </div>
 </div>
