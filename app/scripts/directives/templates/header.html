@@ -10,14 +10,27 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" ui-sref="movies({ page: 1, popularity: 'desc', genres: '' })">cnemas</a>
+        <a class="navbar-brand"
+          ui-sref="movies({ page: 1, popularity: 'desc', genres: '' })"
+          ng-click="searchTerm=''">
+          cnemas
+        </a>
       </div>
 
-      <input type="text"
-        class="form-control search-global"
-        ng-model="searchTerm"
-        ng-model-options="{ debounce: 700 }"
-        placeholder="Search" search>
+      <div class="col-sm-9">
+        <input type="text"
+          class="form-control search-global"
+          ng-model="searchTerm"
+          ng-model-options="{ debounce: 700 }"
+          placeholder="Search" search>
+      </div>
+      <div class="col-sm-1">
+          <button type="submit"
+            class="btn clear-search"
+            ng-click="searchTerm=''">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+      </div>
 
       <!-- <div class="collapse navbar-collapse" id="js-navbar-collapse">
         <ul class="nav navbar-nav">

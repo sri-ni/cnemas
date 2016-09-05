@@ -14,4 +14,8 @@
   &:hover {
     background-color: #DEDEDE;
   }
+
+  &:active {
+    transform: scale(0.95, 0.95);
+  }
 }
