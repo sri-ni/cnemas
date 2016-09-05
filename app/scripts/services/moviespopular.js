@@ -9,17 +9,16 @@
  */
 angular.module('cnemasApp')
   .service('moviesPopular', ['$http', '$q', function ($http, $q) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
 
-    this.getPopularMovies = function(page, popularity) {
-      var deferred = $q.defer();
+    this.getPopularMovies = function(page, popularity, genreIds) {
+      var deferred = $q.defer(),
+        url;
 
-      // console.log('getPopularMovies popularity: ', popularity);
+      url = 'http://api.themoviedb.org/3/discover/movie?sort_by=popularity.'+popularity+'&api_key=2cdc6bb4ff1cc8f902ecb3a7101cc992&page='+page+'&with_genres='+genreIds;
 
-      $http.get('http://api.themoviedb.org/3/discover/movie?sort_by=popularity.'+popularity+'&api_key=2cdc6bb4ff1cc8f902ecb3a7101cc992&page='+page)
+      $http.get(url)
         .then(function(result){
         deferred.resolve(result.data);
-        // console.log('deferred.resolve: ', result.data);
       });
 
       return deferred.promise;

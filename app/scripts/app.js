@@ -17,19 +17,25 @@ angular
     // 'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.router'
+    'ui.router',
+    'btorfs.multiselect'
   ])
   .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('/movies/1');
+    $urlRouterProvider.otherwise('/movies?page=1');
     $stateProvider
       .state('movies', {
-        url: '/movies/:page',
+        url: '/movies?page&popularity&genres',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         cache: false,
         data : {
           displayName : 'Popular'
+        },
+        resolve: {
+          moviesGenres: function(moviesGenres) {
+            return moviesGenres.getMoviesGenres();
+          }
         }
       })
       .state('moviedetails', {

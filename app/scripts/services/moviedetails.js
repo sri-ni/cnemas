@@ -28,7 +28,6 @@ angular.module('cnemasApp')
 
       $http.get(url)
         .then(function(result){
-          console.log('movie title is: ', result.data.title);
           deferred.resolve(result.data.title);
         });
 
