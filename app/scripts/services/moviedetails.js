@@ -9,13 +9,17 @@
  */
 angular.module('cnemasApp')
   .service('movieDetails', ['$http', '$q', function ($http, $q) {
+    var url = 'https://api.themoviedb.org/3/movie/',
+      apiKey = '2cdc6bb4ff1cc8f902ecb3a7101cc992';
 
     this.getMovieDetails = function(id) {
-      var deferred = $q.defer(),
-        url = 'https://api.themoviedb.org/3/movie/'+parseInt(id)+'?api_key=2cdc6bb4ff1cc8f902ecb3a7101cc992';
+      var deferred = $q.defer();
 
-      $http.get(url)
-        .then(function(result){
+        $http.get(url+parseInt(id), {
+          params: {
+            api_key: apiKey
+          }
+        }).then(function(result){
           deferred.resolve(result.data);
         });
 
@@ -23,13 +27,15 @@ angular.module('cnemasApp')
     };
 
     this.getMovieName = function(id) {
-      var deferred = $q.defer(),
-        url = 'https://api.themoviedb.org/3/movie/'+parseInt(id)+'?api_key=2cdc6bb4ff1cc8f902ecb3a7101cc992';
+      var deferred = $q.defer();
 
-      $http.get(url)
-        .then(function(result){
-          deferred.resolve(result.data.title);
-        });
+      $http.get(url+parseInt(id), {
+        params: {
+          api_key: apiKey
+        }
+      }).then(function(result){
+        deferred.resolve(result.data.title);
+      });
 
       return deferred.promise;
     };

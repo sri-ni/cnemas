@@ -18,6 +18,10 @@
   </ul>
 </nav>
 
+<p ng-if="!totalResults">
+  Oops... that didn't match any movie. Nothing there!
+</p>
+
 <div class="row search-results"
   ng-repeat="movie in movies"
   ui-sref="searchresultsmoviedetails({ id: movie.id })">

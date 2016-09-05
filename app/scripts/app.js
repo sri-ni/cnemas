@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'btorfs.multiselect'
+    'btorfs.multiselect',
+    'ngToast'
   ])
   .config(['$urlRouterProvider', '$stateProvider',
   function($urlRouterProvider, $stateProvider) {

@@ -10,7 +10,9 @@
 angular.module('cnemasApp')
   .controller('SearchCtrl', ['$scope', '$stateParams', 'moviesSearch',
   function ($scope, $stateParams, moviesSearch) {
+    $scope.totalResults = -1;
     $scope.searchTerm = $stateParams.q;
+
     var searchTerm = $stateParams.q,
       page = ($stateParams.page)? parseInt($stateParams.page): 1;
 
@@ -29,6 +31,7 @@ angular.module('cnemasApp')
         var page = data.page;
         var totalPages = data['total_pages'];
         $scope.movies = data.results;
+        $scope.totalResults = data['total_results'];
         $scope.nextPage = (page+1 <= totalPages)? page+1: 0;
         $scope.previousPage = (page-1 > 0)? page-1: 0;
       });
