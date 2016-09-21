@@ -11,7 +11,7 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Running `grunt test` will run the unit tests with karma.
 
-## Technology Stack
+## Tech Stack
 - AngularJS 1.5
   - [ui-router](https://github.com/angular-ui/ui-router) instead of ngRoute
 - Yeoman
