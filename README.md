@@ -1,9 +1,9 @@
 # cnemas
 
+## The project specifications can be found in the [wiki](https://github.com/sri-ni/cnemas/wiki).
+
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.
-
-The project specifications can be found in the [wiki](https://github.com/sri-ni/cnemas/wiki).
 
 ## Build & development
 
